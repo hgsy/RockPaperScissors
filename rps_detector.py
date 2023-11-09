@@ -3,7 +3,7 @@ import numpy as np
 
 def gesture(frame):
 
-    frame = cv2.resize(frame, None, fx=0.3,fy=0.3)
+    frame = cv2.resize(frame, None, fx=0.4,fy=0.4)
     frame: np.ndarray
 
     rn = cv2.blur(frame, (5, 5))
@@ -67,21 +67,34 @@ def gesture(frame):
 # 카메라
 cap = cv2.VideoCapture(0)
 
-while cv2.waitKey(100) < 0:
+# 배경 제거
+# fgbg = cv2.createBackgroundSubtractorMOG2(detectShadows=False)  # 배경 빼냄
+# kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+
+while cap.isOpened():
     ret, frame = cap.read()
     if not ret:
         print("카메라를 열 수 없음.")
         break
 
     frameOrig = frame
-    frame, text = gesture(frame)
+
+    #배경 제거
+    # frame_mask = fgbg.apply(frame)
+    # morphed = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, kernel)
+    #MORPH_OPEN 침식 - 팽창
+    #MORPH_CLOSE 팽창 - 침식
+
+    #try except
+    frame, shape = gesture(frame)
     org = (50, 100)
     font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(frame, text , (10,100), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,255,0), 2)
+    cv2.putText(frame, shape, org, font, 1, (0, 255, 0), 2)
 
+    frame = cv2.resize(frame, None, fx=3.0, fy=3.0)
     cv2.imshow("RPS", frame)
-    #
-    if cv2.waitKey(1) == ord('q'):  # 'q' 이거나 'esc' 이면 종료
+
+    if cv2.waitKey(1) == ord('q'):
         break
 
 cap.destroyAllWindows()
