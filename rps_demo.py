@@ -17,10 +17,9 @@ result_label.pack(side="right")
 
 
 def gesture(frame: np.ndarray):
-    frame = cv2.resize(frame, (720, 720))
-    # frame = cv2.resize(frame, None, fx=0.5, fy=0.5)
-
-    cv2.imshow("orig", frame)
+    # frame = cv2.resize(frame, (720, 720))
+    frame = cv2.resize(frame, None, fx=0.5, fy=0.5)
+    # cv2.imshow("orig", frame)
 
     rn = cv2.blur(frame, (5, 5))
 
@@ -78,7 +77,7 @@ def gesture(frame: np.ndarray):
     else:
         motion = None
 
-    cv2.imshow("endFrame", frame)
+    # cv2.imshow("endFrame", frame)
 
     return frame, motion
 
@@ -102,7 +101,7 @@ def demo_img_changer(e):
 # GUI 업데이트
 def update():
 
-    frame = cv2.imread(f'image/demo/{demo[index%3]}.jpg')
+    frame = cv2.imread(f'image/demo/{demo[index%3]}.png')
 
     # ret, frame = cap.read()
     # if not ret:

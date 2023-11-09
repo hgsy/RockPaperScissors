@@ -62,7 +62,7 @@ def gesture(frame):
         angle = np.arccos((b ** 2 + c ** 2 - a ** 2) / (2 * b * c))
         if angle <= np.pi / 2:
             acutes += 1
-            # cv2.circle(frame, start, 4, [0, 0, 255], -1)
+            cv2.circle(frame, start, 4, [0, 0, 255], -1)
 
     fingers = acutes + 1 if acutes > 0 else acutes
 
