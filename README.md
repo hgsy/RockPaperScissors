@@ -1,4 +1,5 @@
 # RockPaperScissors
+공부용
 
 ![rps480](https://github.com/user-attachments/assets/546975b2-1fb9-41c4-b322-f6b5e79faee7)
 
