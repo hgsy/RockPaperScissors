@@ -11,6 +11,12 @@ git clone https://github.com/hgsy/RockPaperScissors.git
 
 ### 2. Environment
 ```
+python                    3.10.13
+pillow                    10.1.0
+opencv-python             4.8.1.78
+```
+
+```
 pip install numpy opencv-python pillow tkinter
 ```
 
